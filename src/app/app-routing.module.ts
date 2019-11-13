@@ -17,7 +17,8 @@ const routes: Routes = [
   },
   { path: 'perfil-usuario', loadChildren: './pages/perfil-usuario/perfil-usuario.module#PerfilUsuarioPageModule' },
   { path: 'perfil-produto', loadChildren: './pages/perfil-produto/perfil-produto.module#PerfilProdutoPageModule' },
-  { path: 'list-produto', loadChildren: './pages/list-produto/list-produto.module#ListProdutoPageModule' }
+  { path: 'list-produto', loadChildren: './pages/list-produto/list-produto.module#ListProdutoPageModule' },
+  { path: 'endereco', loadChildren: './model/endereco/endereco.module#EnderecoPageModule' }
 ];
 
 @NgModule({
