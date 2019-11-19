@@ -1,5 +1,7 @@
 {
   "name": "omundoveg",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

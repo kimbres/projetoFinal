@@ -22,7 +22,7 @@
 
     <ion-item>
         <ion-label position="floating">Senha</ion-label>
-        <ion-input type="password" name="pws" [(ngModel)] ="usuario.psw" minlength="8" required #s="ngModel"></ion-input>
+        <ion-input type="password" name="pws" [(ngModel)] ="usuario.pws" minlength="8" required #s="ngModel"></ion-input>
     </ion-item>
     <ion-text color="danger" *ngIf="s.invalid && s.dirty">
         Senha muito curta.
