@@ -1,5 +1,6 @@
 import { Usuario } from './../../model/usuario';
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from 'src/app/model/usuario';
 
 
 @Component({
@@ -9,16 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddUsuarioPage implements OnInit {
 
-  protected  usuario: Usuario = new Usuario;
+
+  protected usuario: Usuario = new Usuario;
+
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onSubmit(){
+
+  onSubmit (){
     console.log(this.usuario);
-    
+
   }
 
 }
