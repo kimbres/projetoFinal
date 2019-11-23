@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { MensagemService } from 'src/app/services/mensagem.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-usuario',
@@ -18,7 +19,8 @@ export class AddUsuarioPage implements OnInit {
     private usuarioService: UsuarioService,
     private msg: MensagemService,
     private router:Router,
-    private camera: Camera
+    private camera: Camera,
+    public actionSheetController: ActionSheetController
   ) { }
 
   ngOnInit() {
@@ -44,8 +46,8 @@ export class AddUsuarioPage implements OnInit {
 
   tirarFoto(){
     const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      quality: 50,
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
@@ -54,8 +56,62 @@ export class AddUsuarioPage implements OnInit {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64 (DATA_URL):
      let base64Image = 'data:image/jpeg;base64,' + imageData;
+     this.usuario.foto = base64Image;
     }, (err) => {
      // Handle error
     });
+  }
+  pegarFoto(){
+    const options: CameraOptions = {
+      quality: 50,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+     // imageData is either a base64 encoded string or a file URI
+     // If it's base64 (DATA_URL):
+     let base64Image = 'data:image/jpeg;base64,' + imageData;
+     this.usuario.foto = base64Image;
+    }, (err) => {
+     // Handle error
+    });
+  }
+
+
+  async escolherFoto() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Escolher Opção',
+      buttons: [
+        {
+        text: 'Camera',
+        icon: 'camera',
+        handler: () => {
+          this.tirarFoto()
+        }
+      },{
+        text: 'Galeria',
+        icon: 'fotos',
+        handler: () => {
+          this.pegarFoto()
+        }
+      },{
+        text: 'Remover Foto',
+        icon: 'qr-scanner',
+        handler: () => {
+          this.usuario.foto = null;
+        }
+      },{
+        text: 'Cancelar',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+    await actionSheet.present();
   }
 }
