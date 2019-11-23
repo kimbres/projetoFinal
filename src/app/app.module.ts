@@ -13,7 +13,8 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database'
 import { AngularFireAuthModule } from '@angular/fire/auth'
-
+import { Camera } from '@ionic-native/camera/ngx';
+import { ActionSheetController } from '@ionic/angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,7 +30,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth'
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    Camera
   ],
   bootstrap: [AppComponent]
 })

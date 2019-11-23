@@ -52,3 +52,4 @@ export class UsuarioService {
     return this.firedb.object("usuarios/" + uid).update({ativo:false});
   }
 }
+

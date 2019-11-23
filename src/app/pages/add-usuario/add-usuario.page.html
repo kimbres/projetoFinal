@@ -5,6 +5,10 @@
 </ion-header>
 
 <ion-content>
+    <ion-item lines ="none">
+        <img src="assets/perfil.png" (click)="escolherFoto()" *ngIf="!usuario.foto">
+        <img [src]="usuario.foto" (click)="escolherFoto()" *ngIf="usuario.foto">
+    </ion-item>
 
 <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
     <ion-item>
