@@ -1,3 +1,4 @@
+import { Usuario } from './../../model/usuario';
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/model/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -6,6 +7,7 @@ import { Router } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ActionSheetController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-add-usuario',
   templateUrl: './add-usuario.page.html',
@@ -13,8 +15,10 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class AddUsuarioPage implements OnInit {
 
+
   protected usuario: Usuario = new Usuario;
 
+<<<<<<< HEAD
   constructor(
     private usuarioService:UsuarioService,
     private msg:MensagemService,
@@ -23,10 +27,15 @@ export class AddUsuarioPage implements OnInit {
     public actionSheetController: ActionSheetController
 
   ) { }
+=======
+
+  constructor() { }
+>>>>>>> 557ec937a0678fcd0b4f8214f6e433c07b022b45
 
   ngOnInit() {
   }
 
+<<<<<<< HEAD
   onSubmit (form){ 
     console.log(this.usuario);
     this.usuarioService.add(this.usuario).then(
@@ -112,6 +121,12 @@ export class AddUsuarioPage implements OnInit {
       }]
     });
     await actionSheet.present();
+=======
+
+  onSubmit (){
+    console.log(this.usuario);
+
+>>>>>>> 557ec937a0678fcd0b4f8214f6e433c07b022b45
   }
 
 }
