@@ -1,3 +1,4 @@
+import { UsuarioService } from 'src/app/services/usuario.service';
 import { Component } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
@@ -26,8 +27,10 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    protected usuarioService: UsuarioService
   ) {
+    console.log(this.usuarioService.afAuth.auth.currentUser)
     this.initializeApp();
   }
 

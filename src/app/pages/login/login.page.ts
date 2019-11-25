@@ -38,5 +38,9 @@ login(){
   }
 }
 
+logout(){
+  this.afAuth.auth.signOut();
+}
+
 
 }
