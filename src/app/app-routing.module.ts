@@ -20,7 +20,8 @@ const routes: Routes = [
   { path: 'list-produto', loadChildren: './pages/list-produto/list-produto.module#ListProdutoPageModule' },
   { path: 'endereco', loadChildren: './model/endereco/endereco.module#EnderecoPageModule' },
   { path: 'add-usuario', loadChildren: './pages/add-usuario/add-usuario.module#AddUsuarioPageModule' },
-  { path: 'add-produto', loadChildren: './pages/add-produto/add-produto.module#AddProdutoPageModule' }
+  { path: 'add-produto', loadChildren: './pages/add-produto/add-produto.module#AddProdutoPageModule' },
+  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' }
 ];
 
 @NgModule({

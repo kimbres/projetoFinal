@@ -10,7 +10,7 @@ export class UsuarioService {
 
   constructor(
     private firedb: AngularFireDatabase,
-    private afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth
   ) { }
 
   add(usuario:Usuario) {
@@ -35,11 +35,11 @@ export class UsuarioService {
    // return this.firedb.list("usuarios").push(usuario);
     }
 
-  get(){
-    let user = this.afAuth.auth.currentUser;
-    console.log(user);
-    return this.firedb.object("usuarios/"+user.uid).valueChanges();
-  }
+    get() {
+      let user = this.afAuth.auth.currentUser;
+      //console.log(user);
+      return this.firedb.object<Usuario>("usuarios/" + user.uid).valueChanges();
+    }
 
   update(usuario:Usuario){
     let user = this.afAuth.auth.currentUser;
@@ -50,6 +50,10 @@ export class UsuarioService {
     let uid = this.afAuth.auth.currentUser.uid;
     this.afAuth.auth.currentUser.delete();
     return this.firedb.object("usuarios/" + uid).update({ativo:false});
+  }
+
+  logout() {
+    this.afAuth.auth.signOut();
   }
 }
 

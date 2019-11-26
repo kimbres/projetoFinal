@@ -3,7 +3,19 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-header>
         <ion-toolbar>
-          <ion-title>Menu</ion-title>
+          <ion-title slot="start">Menu</ion-title>
+          <ion-title slot="end">
+            <ion-icon name="person" routerLink="/login" 
+            *ngIf="!this.usuarioService.afAuth.auth.currentUser"></ion-icon>
+            <ion-chip routerLink="/perfil-usuario" 
+            *ngIf="this.usuarioService.afAuth.auth.currentUser">
+            <ion-avatar>
+              <img src="assets/perfil.png" *ngIf="!usuario.foto">
+              <img [src]="usuario.foto" *ngIf="usuario.foto">
+              <ion-label>{{usuario.nome}}</ion-label>
+            </ion-avatar>      
+          </ion-chip>
+          </ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content>

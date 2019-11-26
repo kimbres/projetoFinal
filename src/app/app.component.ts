@@ -3,6 +3,9 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { UsuarioService } from './services/usuario.service';
+import { Usuario } from './model/usuario';
+
 
 @Component({
   selector: 'app-root',
@@ -20,13 +23,21 @@ export class AppComponent {
       title: 'Cadastro',
       url: '/add-usuario',
       icon: 'list'
+    },
+    {
+      title: 'Login',
+      url: '/login',
+      icon: 'list'
     }
   ];
+
+  protected usuario : Usuario = new Usuario
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private usuarioService : UsuarioService
   ) {
     this.initializeApp();
   }
@@ -36,5 +47,22 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  ionViewWillEnter() {
+    let login = this.usuarioService.afAuth.auth.currentUser;
+    if (login) {
+      this.usuarioService.get().subscribe(
+        res => {
+          if (res == null) {
+            this.usuario = new Usuario;
+          } else {
+            this.usuario = res
+          }
+          this.usuario.email = login.email
+          console.log(this.usuario)
+        }
+      )
+    }
   }
 }
