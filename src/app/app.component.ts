@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -39,6 +38,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     private usuarioService : UsuarioService
   ) {
+    console.log(this.usuarioService.afAuth.auth.currentUser)
     this.initializeApp();
   }
 
