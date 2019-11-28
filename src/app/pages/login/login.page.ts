@@ -1,7 +1,11 @@
-import { Router } from '@angular/router';
-import { MensagemService } from './../../services/mensagem.service';
+import { Platform } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import { MensagemService } from 'src/app/services/mensagem.service';
+import { auth } from 'firebase/app';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+
 
 @Component({
   selector: 'app-login',
@@ -10,37 +14,56 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class LoginPage implements OnInit {
 
-  protected email:string = null;
-  protected pws:string = null;
+  protected email: string = null;
+  protected pws: string = null;
 
-  
   constructor(
     private afAuth: AngularFireAuth,
-    private router:Router,
-    private msg:MensagemService
+    private router: Router,
+    private msg: MensagemService,
+    private googlePlus: GooglePlus,
+    private platform: Platform
   ) { }
 
   ngOnInit() {
   }
 
-
-
-onSubmit(fc){
-
-}
-
-login(){
-  this.afAuth.auth.signInWithEmailAndPassword(this.email, this.pws).then(res=>{
-    this.router.navigate([''])
-  }),
-  err=>{
-    this.msg.presentAlert("Ops!", "Não foi encontrado o usuario!")
+  onSubmit(fc) {
+    this.login()
   }
-}
 
-logout(){
-  this.afAuth.auth.signOut();
-}
+  login() {
+    this.afAuth.auth.signInWithEmailAndPassword(this.email, this.pws).then(
+      res => {
+        this.router.navigate([''])
+      },
+      err => {
+        console.log(err);
+        this.msg.presentAlert("Ops!", "Não foi encotrado o usuario!");
+      }
+    )
+  }
+  loginGoogle() {
+    if (!this.platform.is("cordova") ){
+      this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    }else {
+      this.googlePlus.login({})
+      .then(res =>{
+      console.log(res)
+      this.router.navigate([''])
+      })
+      .catch(err => console.error(err));
+    }
+    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    this.googlePlus.login({})
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
+  }
 
+  logout() {
+    this.afAuth.auth.signOut().then(
+      () => this.router.navigate([''])
+    )
+  }
 
 }

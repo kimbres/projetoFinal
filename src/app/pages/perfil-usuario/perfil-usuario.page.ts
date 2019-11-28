@@ -1,7 +1,7 @@
-import { Router } from '@angular/router';
-import { Usuario } from './../../model/usuario';
+import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { Component, OnInit, Sanitizer } from '@angular/core';
+import { Usuario } from 'src/app/model/usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil-usuario',
@@ -10,35 +10,38 @@ import { Component, OnInit, Sanitizer } from '@angular/core';
 })
 export class PerfilUsuarioPage implements OnInit {
 
-  protected usuario:Usuario
+  protected usuario: Usuario = new Usuario;
 
   constructor(
-    protected UsuarioService:UsuarioService,
-    private router:Router
-
+    protected usuarioService: UsuarioService,
+    private router: Router
   ) { }
 
-  ngOnInit() {
-     if (!this.UsuarioService.afAuth.auth.currentUser){
-       this.UsuarioService.get().subscribe(
-         res=>{
-           this.usuario = res
-         },
-         erro=>{
-           console.log(erro)
-           this.router.navigate(['login'])
-         }
-       )
-     }
+  ngOnInit() { }
 
+  ionViewWillEnter() {
+    let login = this.usuarioService.afAuth.auth.currentUser;
+    if (login) {
+      this.usuarioService.get().subscribe(
+        res => {
+          if (res == null) {
+            this.usuario = new Usuario;
+          } else {
+            this.usuario = res
+          }
+          this.usuario.email = login.email
+          console.log(this.usuario)
+        },
+        erro => {
+          console.log(erro)
+          this.router.navigate(['/login'])
+        }
+      )
+    }
   }
 
-
-  sair(){
-    this.UsuarioService.logout();
-    this.router.navigate([""])
-       
+  sair() {
+    this.usuarioService.logout()
+    this.router.navigate(["/"])
   }
-
-
 }
