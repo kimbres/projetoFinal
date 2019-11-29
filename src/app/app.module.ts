@@ -13,6 +13,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth'
 import { Camera } from '@ionic-native/camera/ngx';
 import { ActionSheetController } from '@ionic/angular';
 
+
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -28,7 +31,8 @@ import { ActionSheetController } from '@ionic/angular';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    Camera
+    Camera,
+    GooglePlus
   ],
   bootstrap: [AppComponent]
 })
