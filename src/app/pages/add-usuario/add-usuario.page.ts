@@ -7,13 +7,13 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ActionSheetController } from '@ionic/angular';
 
 
+
 @Component({
   selector: 'app-add-usuario',
   templateUrl: './add-usuario.page.html',
   styleUrls: ['./add-usuario.page.scss'],
 })
 export class AddUsuarioPage implements OnInit {
-
 
   protected usuario: Usuario = new Usuario;
 
@@ -29,19 +29,22 @@ export class AddUsuarioPage implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit (form){ 
-    console.log(this.usuario);
+  onSubmit(form) {
+    //console.log(this.usuario);
+    this.msg.presentLoading()
     this.usuarioService.add(this.usuario).then(
-      res=>{
-        //console.log("Cadastrado!", res);
-        this.msg.presentAlert("Aviso","Cadastrado com Sucesso!");
+      res => {
+        //console.log("Cadastrado! ", res);
+        this.msg.dismissLoading()
+        this.msg.presentAlert("OK, ok!", "Cadastrado com sucesso!");
         this.usuario = new Usuario;
         form.reset();
         this.router.navigate(['']);
-      }, 
-      erro=>{
+      },
+      erro => {
         console.log("Erro: ", erro);
-        this.msg.presentAlert("Ops!","Erro ao tentar cadastrar.Verifique se o email já foi cadastrado!");
+        this.msg.dismissLoading()
+        this.msg.presentAlert("Ops!", "Erro ao tentar cadastrar!\nVerique os dados ou se o e-mail já foi cadastrado!");
       }
     )
   }
@@ -64,24 +67,7 @@ export class AddUsuarioPage implements OnInit {
     });
   }
 
-  pegarFoto(){
-    const options: CameraOptions = {
-      quality: 50,
-      sourceType:this.camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-    
-    this.camera.getPicture(options).then((imageData) => {
-     // imageData is either a base64 encoded string or a file URI
-     // If it's base64 (DATA_URL):
-     let base64Image = 'data:image/jpeg;base64,' + imageData;
-     this.usuario.foto = base64Image;
-    }, (err) => {
-     // Handle error
-    });
-  }
+
 
   async escolherFoto() {
     const actionSheet = await this.actionSheetController.create({
@@ -115,6 +101,25 @@ export class AddUsuarioPage implements OnInit {
     });
     await actionSheet.present();
   }
+  pegarFoto(){
+    const options: CameraOptions = {
+      quality: 50,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+     // imageData is either a base64 encoded string or a file URI
+     // If it's base64 (DATA_URL):
+     let base64Image = 'data:image/jpeg;base64,' + imageData;
+     this.usuario.foto = base64Image;
+    }, (err) => {
+     // Handle error
+    });
+  }
+
 
 }
 

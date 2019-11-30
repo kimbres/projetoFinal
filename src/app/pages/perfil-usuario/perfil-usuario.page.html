@@ -1,15 +1,14 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
       <ion-title>Perfil Usuario</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
-  <ion-item lines ="none">
+    <ion-item lines="none">
         <img src="assets/perfil.png" *ngIf="!usuario.foto">
         <img [src]="usuario.foto" *ngIf="usuario.foto">
-  </ion-item>
-
+    </ion-item>
   <ion-list lines="none">
       <ion-item>
           <h2>{{usuario.nome}}</h2>
@@ -20,6 +19,13 @@
       <ion-item>
           <p>Ativo:{{usuario.ativo}}</p>
       </ion-item>
+
+      <ion-item>
+        <ion-text>
+            <p>Latitude: {{usuario.lat}}</p>
+            <p>Longitude: {{usuario.lng}}</p>
+        </ion-text>
+    </ion-item>
 
       <ion-item>
           <ion-button type="reset" expand="full" color="danger" (click)="sair()">Sair</ion-button>

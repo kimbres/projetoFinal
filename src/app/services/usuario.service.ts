@@ -1,5 +1,5 @@
+import { Usuario } from './../model/usuario';
 import { Injectable } from '@angular/core';
-import { Usuario } from '../model/usuario';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 

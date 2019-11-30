@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.ionic.omundoveg" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>O Mundo Veg</name>
-    <description>O melhor da comida Vegana e Vegetariana</description>
-    <author email="hi@ionicframework.com" href="https://omundoveg.com.br/">O Mundo Veg Team</author>
+    <description>O melhor da comida Vegana e Vegetariana.</description>
+    <author email="omundoveg@gmail.com" href="http://omundoveg.com.br/">MaLuMa Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

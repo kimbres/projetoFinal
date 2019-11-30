@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -39,6 +38,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     private usuarioService : UsuarioService
   ) {
+    console.log(this.usuarioService.afAuth.auth.currentUser)
     this.initializeApp();
   }
 
@@ -51,18 +51,23 @@ export class AppComponent {
 
   ionViewWillEnter() {
     let login = this.usuarioService.afAuth.auth.currentUser;
+    console.log(login)
     if (login) {
       this.usuarioService.get().subscribe(
         res => {
           if (res == null) {
-            this.usuario = new Usuario;
+            this.usuario = new Usuario
+            if (login.displayName != null) {
+              this.usuario.foto = login.photoURL
+              this.usuario.nome = login.displayName
+            }
           } else {
             this.usuario = res
           }
           this.usuario.email = login.email
-          console.log(this.usuario)
         }
       )
     }
   }
+
 }
