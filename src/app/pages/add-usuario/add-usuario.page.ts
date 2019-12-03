@@ -22,7 +22,7 @@ export class AddUsuarioPage implements OnInit {
     private msg:MensagemService,
     private router:Router,
     private camera: Camera,
-    public actionSheetController: ActionSheetController
+    public actionSheetController: ActionSheetController   
 
   ) { }
 

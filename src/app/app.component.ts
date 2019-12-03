@@ -4,6 +4,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { UsuarioService } from './services/usuario.service';
 import { Usuario } from './model/usuario';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 
 @Component({
@@ -19,13 +20,13 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'Cadastro',
-      url: '/add-usuario',
+      title: 'Nova Receita',
+      url: '/add-receita',
       icon: 'list'
     },
     {
-      title: 'Login',
-      url: '/login',
+      title: 'Mapa',
+      url: '/mapeamento',
       icon: 'list'
     }
   ];
@@ -36,10 +37,12 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private usuarioService : UsuarioService
+    private usuarioService : UsuarioService,
+    private androidPermissions: AndroidPermissions
   ) {
     console.log(this.usuarioService.afAuth.auth.currentUser)
     this.initializeApp();
+    this.permitir();
   }
 
   initializeApp() {
@@ -68,6 +71,18 @@ export class AppComponent {
         }
       )
     }
+  }
+
+  permitir(){
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
+      result => console.log('Has permission?',result.hasPermission),
+      err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.CAMERA)
+    );
+
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.LOCATION).then(
+      result => console.log('Has permission?',result.hasPermission),
+      err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.LOCATION)
+    );
   }
 
 }

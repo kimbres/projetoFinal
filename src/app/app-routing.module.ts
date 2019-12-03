@@ -21,7 +21,11 @@ const routes: Routes = [
   { path: 'endereco', loadChildren: './model/endereco/endereco.module#EnderecoPageModule' },
   { path: 'add-usuario', loadChildren: './pages/add-usuario/add-usuario.module#AddUsuarioPageModule' },
   { path: 'add-produto', loadChildren: './pages/add-produto/add-produto.module#AddProdutoPageModule' },
-  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' }
+  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
+  { path: 'add-receita', loadChildren: './pages/add-receita/add-receita.module#AddReceitaPageModule' },
+  { path: 'list-receita', loadChildren: './pages/list-receita/list-receita.module#ListReceitaPageModule' },
+  { path: 'teste', loadChildren: './teste/teste.module#TestePageModule' },
+  { path: 'mapeamento', loadChildren: './pages/mapeamento/mapeamento.module#MapeamentoPageModule' }
 ];
 
 @NgModule({

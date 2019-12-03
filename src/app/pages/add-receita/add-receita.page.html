@@ -1,0 +1,46 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-title>Adicionar Nova Receita</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item lines ="none">
+        <img src="assets/perfil.png" (click)="escolherFoto()" *ngIf="!receita.foto">
+        <img [src]="receita.foto" (click)="escolherFoto()" *ngIf="receita.foto">
+    </ion-item>
+
+<form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
+    <ion-list><ion-item>
+        <ion-label position="floating">Nome da Receita</ion-label>
+        <ion-input type="text" name="nome" [(ngModel)] ="receita.nome" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Ingredientes</ion-label>
+      <ion-input type="text" name="nome" [(ngModel)]="receita.ingredientes" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Preparo</ion-label>
+      <ion-input type="mensagem" name="nome" [(ngModel)]="receita.preparo" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Tags</ion-label>
+      <ion-input type="text" name="nome" [(ngModel)]="receita.tags" required></ion-input>
+    </ion-item>
+    </ion-list>
+
+    <section>
+        <ion-button type="submit" expand="full" [disabled]="">Salvar</ion-button>
+        <ion-button type="reset" expand="full" color="danger">Cancelar</ion-button>
+    </section>
+
+
+
+</form>
+
+</ion-content>
+
