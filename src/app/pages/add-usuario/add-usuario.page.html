@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-toolbar>
-    <ion-title>add-usuario</ion-title>
+    <ion-title>Cadastro</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,12 +10,6 @@
         <img src="assets/perfil.png" (click)="escolherFoto()" *ngIf="!usuario.foto">
         <img [src]="usuario.foto" (click)="escolherFoto()" *ngIf="usuario.foto">
     </ion-item>
-
-
-<ion-item lines="none">
-    <img src="assets/perfil.png" (click)="escolherFoto()" *ngIf="!usuario.foto">
-    <img [src]="usuario.foto" (click)="escolherFoto()">
-</ion-item>
 
 <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
     <ion-item>

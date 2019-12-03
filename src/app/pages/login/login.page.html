@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
       <ion-item>
           <ion-label position="floating">E-mail</ion-label>
@@ -23,7 +23,7 @@
   </form>
 
   <section>
-      <ion-button expand="block" color="warning" routerLink="/tabs/addUsuario">
+      <ion-button expand="block" color="warning" routerLink="/add-usuario">
           Novo cadastro</ion-button>
       <ion-button expand="block" fill="outline"color="" (click)="loginGoogle()">Entrar pelo Google</ion-button>
   </section>

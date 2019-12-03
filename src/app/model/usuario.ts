@@ -6,4 +6,6 @@ export class Usuario {
     foto:string;
     ativo:boolean = true;
     Enderecos:Endereco[] = []
+  lat: number;
+  lng: number;
 }

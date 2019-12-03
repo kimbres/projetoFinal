@@ -9,7 +9,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { Camera } from '@ionic-native/camera/ngx';
-import { ActionSheetController } from '@ionic/angular';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+
 
 //Googleplus ------------
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
@@ -20,6 +21,9 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from "@angular/fire/database"
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -37,7 +41,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera,
-    GooglePlus
+    GooglePlus,
+    Geolocation,
+    AndroidPermissions
   ],
   bootstrap: [AppComponent]
 })

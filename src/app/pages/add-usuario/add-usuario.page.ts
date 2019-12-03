@@ -22,26 +22,29 @@ export class AddUsuarioPage implements OnInit {
     private msg:MensagemService,
     private router:Router,
     private camera: Camera,
-    public actionSheetController: ActionSheetController
+    public actionSheetController: ActionSheetController   
 
   ) { }
 
   ngOnInit() {
   }
 
-  onSubmit (form){ 
-    console.log(this.usuario);
+  onSubmit(form) {
+    //console.log(this.usuario);
+    this.msg.presentLoading()
     this.usuarioService.add(this.usuario).then(
-      res=>{
-        //console.log("Cadastrado!", res);
-        this.msg.presentAlert("Aviso","Cadastrado com Sucesso!");
+      res => {
+        //console.log("Cadastrado! ", res);
+        this.msg.dismissLoading()
+        this.msg.presentAlert("OK, ok!", "Cadastrado com sucesso!");
         this.usuario = new Usuario;
         form.reset();
         this.router.navigate(['']);
-      }, 
-      erro=>{
+      },
+      erro => {
         console.log("Erro: ", erro);
-        this.msg.presentAlert("Ops!","Erro ao tentar cadastrar.Verifique se o email já foi cadastrado!");
+        this.msg.dismissLoading()
+        this.msg.presentAlert("Ops!", "Erro ao tentar cadastrar!\nVerique os dados ou se o e-mail já foi cadastrado!");
       }
     )
   }

@@ -5,9 +5,9 @@
 </ion-header> -->
 
 <ion-content>
-    <ion-item lines ="none">
-        <img src="assets/perfil.png" (click)="escolherFoto()" *ngIf="!usuario.foto">
-        <img [src]="usuario.foto" (click)="escolherFoto()" *ngIf="usuario.foto">
+    <ion-item lines="none">
+        <img src="assets/perfil.png" *ngIf="!usuario.foto">
+        <img [src]="usuario.foto" *ngIf="usuario.foto">
     </ion-item>
   <ion-list lines="none">
       <ion-item>
@@ -19,6 +19,13 @@
       <ion-item>
           <p>Ativo:{{usuario.ativo}}</p>
       </ion-item>
+
+      <ion-item>
+        <ion-text>
+            <p>Latitude: {{usuario.lat}}</p>
+            <p>Longitude: {{usuario.lng}}</p>
+        </ion-text>
+    </ion-item>
 
       <ion-item>
           <ion-button type="reset" expand="full" color="danger" (click)="sair()">Sair</ion-button>
