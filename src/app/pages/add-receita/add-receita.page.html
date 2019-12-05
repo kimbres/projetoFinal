@@ -5,9 +5,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <ion-item lines ="none">
-        <img src="assets/perfil.png" (click)="escolherFoto()" *ngIf="!receita.foto">
+<ion-content >
+    <ion-item  lines ="none">
+        <img  src="assets/perfil.png" (click)="escolherFoto()" *ngIf="!receita.foto" text-align>
         <img [src]="receita.foto" (click)="escolherFoto()" *ngIf="receita.foto">
     </ion-item>
 
@@ -24,7 +24,9 @@
 
     <ion-item>
       <ion-label position="floating">Preparo</ion-label>
+
       <ion-textarea type="mensagem" rows="6" cols="20" placeholder="Coloque o modo de preparo aqui..." name="nome" [(ngModel)]="receita.preparo" required></ion-textarea>
+
     </ion-item>
 
     <ion-item>
