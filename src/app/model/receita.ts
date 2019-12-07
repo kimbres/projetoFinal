@@ -7,5 +7,5 @@ export class Receita {
     }];
     preparo: string;
     tags: string;
-    foto: string
+    foto: string[]
 }
