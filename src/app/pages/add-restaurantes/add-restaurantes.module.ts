@@ -2,16 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { ToastController } from '@ionic/angular';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AddReceitaPage } from './add-receita.page';
+import { AddRestaurantesPage } from './add-restaurantes.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: AddReceitaPage
+    component: AddRestaurantesPage
   }
 ];
 
@@ -22,6 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [AddReceitaPage]
+  declarations: [AddRestaurantesPage]
 })
-export class AddReceitaPageModule {}
+export class AddRestaurantesPageModule {}
