@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header >
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -11,30 +11,69 @@
 
 <ion-content>
 
-    <ion-item >
-      <img src="/assets/veg2.png" alt="" />
-      <ion-label>Scaffold Out Your App</ion-label>
-    </ion-item>
+
+        <ion-slides pager="true" [options]="slideOpts">
+          <ion-slide>
+              <ion-item >
+                  <img src="/assets/veg2.png" alt="" />
+                  <ion-label>Scaffold Out Your App</ion-label>
+                </ion-item>
+          </ion-slide>
+          <ion-slide>
+              <ion-item >
+                  <img src="/assets/restaurante2.jpg" alt="" />
+                  <ion-label>Scaffold Out Your App</ion-label>
+                </ion-item>
+          </ion-slide>
+          <ion-slide>
+              <ion-item >
+                  <img src="/assets/veg2.png" alt="" />
+                  <ion-label>Scaffold Out Your App</ion-label>
+                </ion-item>
+          </ion-slide>
+        </ion-slides>
+
+
+
+
+
+
+
 
     <ion-list lines="none">
+
       <ion-list-header>
         <ion-label>Resources</ion-label>
       </ion-list-header>
-      <ion-item href="https://ionicframework.com/docs/">
-        <ion-icon slot="start" color="medium" name="book"></ion-icon>
-        <ion-label>Ionic Documentation</ion-label>
+
+
+      <ion-card  routerLink="/restaurantes" id="teste">
+          <img src="/assets/restaurante2.jpg" />
+      <ion-item>
+        <ion-icon name="business"></ion-icon>
+        <ion-label style="padding-left: 10px;">Restaurantes</ion-label>
       </ion-item>
+    </ion-card>
+    <ion-card id="teste">
+        <img src="/assets/receitas2.jpg" />
       <ion-item href="https://ionicframework.com/docs/building/scaffolding">
-        <ion-icon slot="start" color="medium" name="build"></ion-icon>
-        <ion-label>Scaffold Out Your App</ion-label>
+        <ion-icon   name="book"></ion-icon>
+        <ion-label style="padding-left: 10px;">Receitas</ion-label>
       </ion-item>
+    </ion-card>
+<ion-card id="teste" >
+    <img src="/assets/organicos2.jpg" />
       <ion-item href="https://ionicframework.com/docs/layout/structure">
-        <ion-icon slot="start" color="medium" name="grid"></ion-icon>
-        <ion-label>Change Your App Layout</ion-label>
+        <ion-icon name="nutrition"></ion-icon>
+        <ion-label style="padding-left: 10px;" >Orgânicos</ion-label>
       </ion-item>
-      <ion-item href="https://ionicframework.com/docs/theming/basics">
-        <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
+    </ion-card>
+    <ion-card id="teste">
+      <ion-item  href="https://ionicframework.com/docs/layout/structure">
+        <ion-icon  name="color-fill"></ion-icon>
         <ion-label>Theme Your App</ion-label>
       </ion-item>
+    </ion-card>
+
     </ion-list>
 </ion-content>

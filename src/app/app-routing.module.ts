@@ -26,7 +26,9 @@ const routes: Routes = [
   { path: 'list-receita', loadChildren: './pages/list-receita/list-receita.module#ListReceitaPageModule' },
   { path: 'teste', loadChildren: './teste/teste.module#TestePageModule' },
   { path: 'mapeamento', loadChildren: './pages/mapeamento/mapeamento.module#MapeamentoPageModule' },
-  { path: 'subs-alimentos', loadChildren: './subs-alimentos/subs-alimentos.module#SubsAlimentosPageModule' }
+  { path: 'subs-alimentos', loadChildren: './subs-alimentos/subs-alimentos.module#SubsAlimentosPageModule' },
+  { path: 'restaurantes', loadChildren: './pages/restaurantes/restaurantes.module#RestaurantesPageModule' },
+  { path: 'add-restaurantes', loadChildren: './pages/add-restaurantes/add-restaurantes.module#AddRestaurantesPageModule' }
 ];
 
 @NgModule({

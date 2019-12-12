@@ -1,6 +1,10 @@
 <ion-header>
 
   <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+
     <ion-title>Adicionar Nova Receita</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -19,13 +23,13 @@
 
     <ion-item>
       <ion-label position="floating">Ingredientes</ion-label>
-      <ion-input type="text" name="nome" [(ngModel)]="receita.ingredientes" required></ion-input>
+      <ion-textarea type="mensagem" rows="6" cols="20" placeholder="Coloque os ingredientes aqui..." name="ingredientes" [(ngModel)]="receita.ingredientes" required></ion-textarea>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Preparo</ion-label>
 
-      <ion-textarea type="mensagem" rows="6" cols="20" placeholder="Coloque o modo de preparo aqui..." name="nome" [(ngModel)]="receita.preparo" required></ion-textarea>
+      <ion-textarea type="mensagem" rows="6" cols="20" placeholder="Coloque o modo de preparo aqui..." name="preparo" [(ngModel)]="receita.preparo" required></ion-textarea>
 
     </ion-item>
 
@@ -36,8 +40,8 @@
     </ion-list>
 
     <section>
-        <ion-button type="submit" expand="full" [disabled]="">Salvar</ion-button>
-        <ion-button type="reset" expand="full" color="danger">Cancelar</ion-button>
+        <ion-button (click)="presentToast()" type="submit" expand="full" [disabled]="">Salvar</ion-button>
+        <ion-button type="reset" expand="full" color="danger" routerLink="">Cancelar</ion-button>
     </section>
 
 

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ActionSheetController, Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { ToastController } from '@ionic/angular';
 
 
 import {
@@ -26,6 +27,7 @@ import {
   templateUrl: './add-receita.page.html',
   styleUrls: ['./add-receita.page.scss'],
 })
+
 export class AddReceitaPage implements OnInit {
 
   protected receita: Receita = new Receita;
@@ -41,7 +43,8 @@ export class AddReceitaPage implements OnInit {
     private camera: Camera,
     public actionSheetController: ActionSheetController,
     private geolocation: Geolocation,
-    private platform: Platform
+    private platform: Platform,
+    public toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -57,10 +60,11 @@ export class AddReceitaPage implements OnInit {
     this.receitaService.add(this.receita).then(
       res => {
         //console.log("Cadastrado! ", res);
-        this.msg.dismissLoading()
-        this.msg.presentAlert("OK, ok!", "Cadastrado com sucesso!");
+
         this.receita = new Receita;
         form.reset();
+        this.msg.dismissLoading();
+
         this.router.navigate(['']);
       },
       erro => {
@@ -113,6 +117,14 @@ export class AddReceitaPage implements OnInit {
     }, (err) => {
       // Handle error
     });
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Receita Cadastrada com sucesso!.',
+      duration: 2000
+    });
+    toast.present();
   }
 
   async escolherFoto() {

@@ -22,12 +22,12 @@ export class AppComponent {
     {
       title: 'Nova Receita',
       url: '/add-receita',
-      icon: 'list'
+      icon: 'restaurant'
     },
     {
       title: 'Mapa',
       url: '/mapeamento',
-      icon: 'list'
+      icon: 'map'
     }
   ];
 
