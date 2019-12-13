@@ -34,8 +34,8 @@
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Tags</ion-label>
-      <ion-input type="text" name="nome" [(ngModel)]="receita.tags" required></ion-input>
+      <ion-label position="floating">Tags</ion-label><br>
+      <tag-input type="text" name="tags" [separatorKeyCodes]="[32]" placeholder="Coloque o modo de preparo aqui..."  [(ngModel)]="receita.tags" required> </tag-input>
     </ion-item>
     </ion-list>
 

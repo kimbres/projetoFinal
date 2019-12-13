@@ -18,7 +18,8 @@ import {
   MarkerOptions,
   Marker,
   MyLocation,
-  LocationService
+  LocationService,
+
 } from '@ionic-native/google-maps';
 
 
@@ -73,6 +74,9 @@ export class AddReceitaPage implements OnInit {
         this.msg.presentAlert("Ops!", "Erro ao tentar cadastrar!\nVerique os dados ou se o e-mail já foi cadastrado!");
       }
     )
+    console.log(form.tags);
+    form.tags = this.tagArrayToString(form.tags);
+    console.log(form.tags);
   }
 
   //Fotos ------------------------------------------  
@@ -241,4 +245,17 @@ export class AddReceitaPage implements OnInit {
       alert(nome);
     });
   }
+
+  // Tags
+
+  tagArrayToString(tagArray: string[]): string {
+    if (Array.isArray(tagArray) && tagArray.length > 0) {
+      const tags = tagArray.map((e: any) => `[${e.value}]`);
+      const tagString = tags.join();
+      return tagString;
+    } else {
+      return '';
+    }
+  }
+
 }

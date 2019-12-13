@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
+import { TagInputModule } from 'ngx-chips';
+
 import { IonicModule } from '@ionic/angular';
 
 import { AddReceitaPage } from './add-receita.page';
@@ -20,7 +22,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    TagInputModule
   ],
   declarations: [AddReceitaPage]
 })

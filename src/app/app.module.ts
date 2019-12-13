@@ -21,6 +21,8 @@ import { AngularFireDatabaseModule } from "@angular/fire/database"
 import { AngularFirestoreModule} from "@angular/fire/firestore"
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,8 +34,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AngularFirestoreModule
-    
+    AngularFirestoreModule,  
+    BrowserAnimationsModule
   ],
   providers: [
     StatusBar,
