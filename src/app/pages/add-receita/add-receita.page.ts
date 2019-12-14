@@ -24,7 +24,7 @@ import {
 
 
 @Component({
-  selector: 'app-add-produto',
+  selector: 'app-add-receita',
   templateUrl: './add-receita.page.html',
   styleUrls: ['./add-receita.page.scss'],
 })

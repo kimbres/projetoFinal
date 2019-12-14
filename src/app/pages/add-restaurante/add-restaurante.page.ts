@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ProdutoService } from 'src/app/services/produto.service';
 import { MensagemService } from 'src/app/services/mensagem.service';
-import { Produto } from 'src/app/model/produto';
-import { Router } from '@angular/router';
+import { Restaurante } from 'src/app/model/restaurante';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ActionSheetController, Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { RestauranteService } from '../../services/restaurante.service';
 
 
 import {
@@ -20,23 +20,33 @@ import {
   LocationService
 } from '@ionic-native/google-maps';
 
-@Component({
-  selector: 'app-add-produto',
-  templateUrl: './add-produto.page.html',
-  styleUrls: ['./add-produto.page.scss'],
-})
-export class AddProdutoPage implements OnInit {
 
-  protected produto: Produto = new Produto;
+
+@Component({
+  selector: 'app-add-restaurante',
+  templateUrl: './add-restaurante.page.html',
+  styleUrls: ['./add-restaurante.page.scss'],
+})
+export class AddRestaurantePage implements OnInit {
+
+  protected restaurante: Restaurante = new Restaurante;
+  private id: string;
+
+  slideOpts = {
+    initialSlide: 1,
+    slidesPerView: 4,
+    speed: 400
+  }
 
   constructor(
-    private produtoService: ProdutoService,
+    private restauranteService: RestauranteService,
     private msg: MensagemService,
     private router: Router,
     private camera: Camera,
     public actionSheetController: ActionSheetController,
     private geolocation: Geolocation,
-    private platform: Platform
+    private platform: Platform,
+    private ativeRouter: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -44,27 +54,57 @@ export class AddProdutoPage implements OnInit {
       this.loadMap();
     });
   }
-
-  onSubmit(form) {
-    //console.log(this.produto);
-    this.msg.presentLoading()
-    this.produtoService.add(this.produto).then(
-      res => {
-        //console.log("Cadastrado! ", res);
-        this.msg.dismissLoading()
-        this.msg.presentAlert("OK, ok!", "Cadastrado com sucesso!");
-        this.produto = new Produto;
-        form.reset();
-        this.router.navigate(['']);
-      },
-      erro => {
-        console.log("Erro: ", erro);
-        this.msg.dismissLoading()
-        this.msg.presentAlert("Ops!", "Erro ao tentar cadastrar!\nVerique os dados ou se o e-mail já foi cadastrado!");
-      }
-    )
+  ionViewWillEnter() {
+    this.id = this.ativeRouter.snapshot.paramMap.get("id")
+    if (this.id) {
+      this.restaurante = new Restaurante
+      this.restauranteService.get(this.id).subscribe(
+        res => {
+          this.restaurante = res
+        }
+      )
+    }
   }
 
+  onSubmit(form) {
+    //console.log(this.restaurante);
+    this.msg.presentLoading()
+    if (this.id) {
+      this.restauranteService.update(this.restaurante, this.id).then(
+        res => {
+          //console.log("Atualizado! ", res);
+          this.msg.dismissLoading()
+          this.msg.presentAlert("OK, ok!", "Atualizado com sucesso!");
+          this.restaurante = new Restaurante;
+          form.reset();
+          this.router.navigate(['']);
+        },
+        erro => {
+          console.log("Erro: ", erro);
+          this.msg.dismissLoading()
+          this.msg.presentAlert("Ops!", "Erro ao tentar atualizar!");
+        }
+      )
+    } else {
+      this.restauranteService.add(this.restaurante).then(
+        res => {
+          //console.log("Cadastrado! ", res);
+          this.msg.dismissLoading()
+          this.msg.presentAlert("OK, ok!", "Cadastrado com sucesso!");
+          this.restaurante = new Restaurante;
+          form.reset();
+          this.router.navigate(['']);
+        },
+        erro => {
+          console.log("Erro: ", erro);
+          this.msg.dismissLoading()
+          this.msg.presentAlert("Ops!", "Erro ao tentar cadastrar!");
+        }
+      )
+    }
+  }
+
+  //Fotos ------------------------------------------  
   tirarFoto() {
     const options: CameraOptions = {
       quality: 50,
@@ -77,7 +117,10 @@ export class AddProdutoPage implements OnInit {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.produto.fotos.push(base64Image);
+      if (this.restaurante.fotos == null) {
+        this.restaurante.fotos = []
+      }
+      this.restaurante.fotos.push(base64Image);
     }, (err) => {
       // Handle error
     });
@@ -96,7 +139,10 @@ export class AddProdutoPage implements OnInit {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.produto.fotos.push(base64Image);
+      if (this.restaurante.fotos == null) {
+        this.restaurante.fotos = []
+      }
+      this.restaurante.fotos.push(base64Image);
     }, (err) => {
       // Handle error
     });
@@ -104,7 +150,7 @@ export class AddProdutoPage implements OnInit {
 
   async escolherFoto() {
     const actionSheet = await this.actionSheetController.create({
-      header: 'Escolher Opção',
+      header: 'Escolhar Opção',
       buttons: [
         {
           text: 'Camera',
@@ -124,7 +170,7 @@ export class AddProdutoPage implements OnInit {
           text: 'Remover Foto',
           icon: 'qr-scanner',
           handler: () => {
-            this.produto.fotos = null;
+            this.restaurante.fotos = null;
           }
         },
         {
@@ -139,13 +185,34 @@ export class AddProdutoPage implements OnInit {
     await actionSheet.present();
   }
 
+  async removerFoto(index) {
+    const alert = await this.msg.alertController.create({
+      header: 'Confirmar!',
+      message: 'Deseja apagar a ' + (index + 1) + 'ª foto?',
+      buttons: [
+        {
+          text: 'Sim',
+          handler: () => {
+            this.restaurante.fotos.splice(index, 1)
+            if (this.restaurante.fotos[0] == null)
+              this.restaurante.fotos = null
+          }
+        },
+        {
+          text: 'Não',
+          role: 'cancel',
+          cssClass: 'secondary',
+        }
+      ]
+    })
+    await alert.present()
+  }
 
   //Google Maps ------------------------------------------
   map: GoogleMap;
   local = { lat: 43.0741904, lng: -89.3809802 };
 
   loadMap() {
-   
     let mapOptions: GoogleMapOptions = {
       camera: {
         target: {
@@ -157,16 +224,17 @@ export class AddProdutoPage implements OnInit {
       }
     }
 
-    
-
     this.map = GoogleMaps.create('map_canvas', mapOptions);
 
     this.minhaLocalizacao()
 
     this.adicionarPonto("blue", "VOCÊ", this.local);
-    
+
     this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(
-      p => this.adicionarPonto("#778800", "Produto",p[0])
+      p => {
+        this.adicionarPonto("red", "Produto", p[0])
+        console.log(p[0]);
+      }
     )
   }
 
@@ -174,6 +242,7 @@ export class AddProdutoPage implements OnInit {
     LocationService.getMyLocation().then(
       (myLocation: MyLocation) => {
         this.local = myLocation.latLng
+        console.log(this.local);
         this.map.setOptions({
           camera: {
             target: myLocation.latLng
@@ -187,7 +256,7 @@ export class AddProdutoPage implements OnInit {
       title: nome,
       icon: cor,
       animation: 'DROP',
-      position: { lat: local.lat, lng: local.lng }
+      position: local
     });
     marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
       alert(nome);

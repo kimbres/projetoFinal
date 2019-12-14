@@ -1,9 +1,7 @@
-export class Produto {
+export class Restaurante {
     nome:string;
     descricao:string;
     categoria:string;
-    valor:number;
-    quant:number;
     fotos:string[] = [];
     ativo:boolean = true;
     lat:number = 0;
