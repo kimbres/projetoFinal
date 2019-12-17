@@ -1,12 +1,74 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-        </ion-buttons>
-    <ion-title>add-restaurantes</ion-title>
+    <ion-title>Dados do Restaurante</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-item lines="none" class="foto">
+    <img src="assets/perfil.png" (click)="escolherFoto()" *ngIf="!restaurante.fotos">
+    <img [src]="restaurante.fotos[0]" (click)="escolherFoto()" *ngIf="restaurante.fotos">
+  </ion-item>
+  
+  <ion-slides pager="true" [options]="slideOpts" *ngIf="restaurante.fotos">
+    <ion-slide *ngFor="let foto of restaurante.fotos; let i=index" class="fotos">
+      <img src="{{foto}}" (click)="removerFoto(i)">
+    </ion-slide>
+  </ion-slides>
+
+  <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input type="text" name="nome" [(ngModel)]="restaurante.nome" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descrição</ion-label>
+      <ion-input type="text" name="descricao" [(ngModel)]="restaurante.descricao" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Categoria</ion-label>
+      <ion-select placeholder="Selecione a Categoria" name="categoria" [(ngModel)]="restaurante.categoria">
+        <ion-select-option value="vegetariano">Vegetariano</ion-select-option>
+        <ion-select-option value="vegano">Vegano</ion-select-option>
+        <ion-select-option value="vegetariano_vegano">vegetariano/Vegano</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">bairro</ion-label>
+      <ion-input type="text" name="bairro" [(ngModel)]="restaurante.bairro" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Cep</ion-label>
+      <ion-input type="text" name="cep" [(ngModel)]="restaurante.cep" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Telefone</ion-label>
+      <ion-input type="text" name="telefone" [(ngModel)]="restaurante.telefone" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Endereço</ion-label>
+      <ion-input type="text" name="endereco" [(ngModel)]="restaurante.endereco" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Site</ion-label>
+      <ion-input type="text" name="site" [(ngModel)]="restaurante.site"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Facebook</ion-label>
+      <ion-input type="text" name="facebook" [(ngModel)]="restaurante.facebook" required></ion-input>
+    </ion-item>
+
+
+
+
+    <section>
+      <ion-button type="submit" expand="full" [disabled]="fc.invalid">Salvar</ion-button>
+      <ion-button type="reset" expand="full" color="danger">Cancelar</ion-button>
+    </section>
+  </form>
+
+  <div id="map_canvas"></div>
 
 </ion-content>

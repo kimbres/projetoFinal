@@ -28,6 +28,16 @@ export class AppComponent {
       title: 'Mapa',
       url: '/mapeamento',
       icon: 'map'
+    },
+    {
+      title: 'restaurantes',
+      url: '/list-restaurante',
+      icon: 'map'
+    },
+    {
+      title: 'adicionar restaurantes',
+      url: '/add-restaurante',
+      icon: 'map'
     }
   ];
 

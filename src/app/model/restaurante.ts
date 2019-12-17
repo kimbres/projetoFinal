@@ -2,6 +2,12 @@ export class Restaurante {
     nome:string;
     descricao:string;
     categoria:string;
+    bairro:String;
+    cep:String;
+    telefone:String;
+    endereco:String;
+    site:String;
+    facebook:String;
     fotos:string[] = [];
     ativo:boolean = true;
     lat:number = 0;

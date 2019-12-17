@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { RestauranteService } from 'src/app/services/restaurante.service';
 import { MensagemService } from 'src/app/services/mensagem.service';
 import { Restaurante } from 'src/app/model/restaurante';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ActionSheetController, Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { RestauranteService } from '../../services/restaurante.service';
 
 
 import {
@@ -19,7 +19,6 @@ import {
   MyLocation,
   LocationService
 } from '@ionic-native/google-maps';
-
 
 
 @Component({
@@ -232,7 +231,7 @@ export class AddRestaurantePage implements OnInit {
 
     this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(
       p => {
-        this.adicionarPonto("red", "Produto", p[0])
+        this.adicionarPonto("red", "restaurante", p[0])
         console.log(p[0]);
       }
     )
