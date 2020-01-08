@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Lista de Produtos</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Lista de Restaurantes</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,8 +15,8 @@
   </ion-item>
 
   <ion-list *ngIf="!lista">
-    <div *ngFor="let p of produtos">
-      <ion-card class="cards" routerLink="/tabs/perfilProduto/{{p.key}}">
+    <div *ngFor="let p of restaurantes">
+      <ion-card class="cards" routerLink="/perfil-restaurante/{{p.key}}">
         <img src="{{p.fotos[0]}}" alt="" *ngIf="p.fotos" />
         <img src="assets/box.png" alt="" *ngIf="!p.fotos" />
 
@@ -29,12 +32,12 @@
   </ion-list>
 
   <ion-list class="lista" *ngIf="lista">
-    <ion-item-sliding *ngFor="let p of produtos">
+    <ion-item-sliding *ngFor="let p of restaurantes">
       <ion-item-options side="start">
-        <ion-item-option routerLink="/tabs/addProduto/{{p.key}}" color="primary">Atualizar</ion-item-option>
+        <ion-item-option routerLink="/add-restaurante/{{p.key}}" color="primary">Atualizar</ion-item-option>
       </ion-item-options>
 
-      <ion-item routerLink="/tabs/perfilProduto/{{p.key}}">
+      <ion-item routerLink="/perfil-restaurante/{{p.key}}">
         <ion-avatar>
           <img src="{{p.fotos[0]}}" alt="" *ngIf="p.fotos" />
           <img src="assets/box.png" alt="" *ngIf="!p.fotos" />
