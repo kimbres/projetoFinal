@@ -15,22 +15,21 @@ const routes: Routes = [
     path: 'list',
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
-  { path: 'perfil-usuario', loadChildren: './pages/perfil-usuario/perfil-usuario.module#PerfilUsuarioPageModule' },
-  { path: 'perfil-produto', loadChildren: './pages/perfil-produto/perfil-produto.module#PerfilProdutoPageModule' },
-  { path: 'list-produto', loadChildren: './pages/list-produto/list-produto.module#ListProdutoPageModule' },
   { path: 'endereco', loadChildren: './model/endereco/endereco.module#EnderecoPageModule' },
   { path: 'add-usuario', loadChildren: './pages/add-usuario/add-usuario.module#AddUsuarioPageModule' },
-  { path: 'add-produto', loadChildren: './pages/add-produto/add-produto.module#AddProdutoPageModule' },
-  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
   { path: 'add-receita', loadChildren: './pages/add-receita/add-receita.module#AddReceitaPageModule' },
-  { path: 'list-receita', loadChildren: './pages/list-receita/list-receita.module#ListReceitaPageModule' },
+  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
   { path: 'teste', loadChildren: './teste/teste.module#TestePageModule' },
   { path: 'mapeamento', loadChildren: './pages/mapeamento/mapeamento.module#MapeamentoPageModule' },
   { path: 'subs-alimentos', loadChildren: './subs-alimentos/subs-alimentos.module#SubsAlimentosPageModule' },
   { path: 'restaurantes', loadChildren: './pages/restaurantes/restaurantes.module#RestaurantesPageModule' },
-  { path: 'add-restaurantes', loadChildren: './pages/add-restaurantes/add-restaurantes.module#AddRestaurantesPageModule' },  { path: 'perfil-receita', loadChildren: './pages/perfil-receita/perfil-receita.module#PerfilReceitaPageModule' }
+  { path: 'list-receita', loadChildren: './pages/list-receita/list-receita.module#ListReceitaPageModule' },
+  { path: 'list-restaurante', loadChildren: './pages/list-restaurante/list-restaurante.module#ListRestaurantePageModule' },
+  { path: 'perfil-usuario', loadChildren: './pages/perfil-usuario/perfil-usuario.module#PerfilUsuarioPageModule' },
+  { path: 'perfil-restaurante/:id', loadChildren: './pages/perfil-restaurante/perfil-restaurante.module#PerfilRestaurantePageModule' },
+  { path: 'perfil-receita/:id', loadChildren: './pages/perfil-receita/perfil-receita.module#PerfilReceitaPageModule' }
 
-];
+]
 
 @NgModule({
   imports: [

@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { ReceitaService } from 'src/app/services/receita.service';
-import { Receita } from 'src/app/model/receita';
+import { RestauranteService } from 'src/app/services/restaurante.service';
+import { Restaurante } from 'src/app/model/restaurante';
 import { MensagemService } from 'src/app/services/mensagem.service';
 
 @Component({
-  selector: 'app-list-receita',
-  templateUrl: './list-receita.page.html',
-  styleUrls: ['./list-receita.page.scss'],
+  selector: 'app-list-restaurante',
+  templateUrl: './list-restaurante.page.html',
+  styleUrls: ['./list-restaurante.page.scss'],
 })
-export class ListReceitaPage implements OnInit {
+export class ListRestaurantePage implements OnInit {
 
-  protected receitas: Receita[];
+  protected restaurantes: Restaurante[];
   protected lista: boolean = false
   texto: string= ""
   constructor(
-    private receitaService: ReceitaService,
+    private restauranteService: RestauranteService,
     private msg: MensagemService
   ) { }
 
   ngOnInit() {
-    this.receitaService.getAll().subscribe(
+    this.restauranteService.getAll().subscribe(
       res => {
-        this.receitas = res;
+        this.restaurantes = res;
         console.log(res);
       }
     )
@@ -30,13 +30,13 @@ export class ListReceitaPage implements OnInit {
   async remover(id) {
     const alert = await this.msg.alertController.create({
       header: 'Confirmar!',
-      message: 'Deseja apagar a receita?',
+      message: 'Deseja apagar o produto?',
       buttons: [
         {
           text: 'Sim',
           handler: () => {
             this.msg.presentLoading()
-            this.receitaService.delete(id).then(
+            this.restauranteService.delete(id).then(
               _ => this.msg.dismissLoading()
             )
           }
@@ -52,9 +52,9 @@ export class ListReceitaPage implements OnInit {
   }
 
   busca(){
-    this.receitaService.busca(this.texto).subscribe(
+    this.restauranteService.busca(this.texto).subscribe(
       res => {
-        this.receitas = res;
+        this.restaurantes = res;
         console.log(res);
       }
     )

@@ -1,9 +1,42 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>perfil-receita</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{receita.nome}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list lines="none">
+    <ion-item lines="none" class="foto">
+      <img src="assets/box.png" *ngIf="!receita.fotos">
+      <img [src]="receita.fotos[0]" *ngIf="receita.fotos">
+    </ion-item>
+    
+    <ion-slides pager="true" [options]="slideOpts" *ngIf="receita.fotos">
+      <ion-slide *ngFor="let foto of receita.fotos" class="fotos">
+        <img src="{{foto}}">
+      </ion-slide>
+    </ion-slides>
+
+    <ion-item>
+      <h2>{{receita.nome}}</h2>
+    </ion-item>
+    <ion-item>
+      <p>Ingredientes:{{receita.ingredientes}}</p>
+    </ion-item>
+    <ion-item>
+      <p>Preparo:{{receita.preparo}}</p>
+    </ion-item>
+    <ion-item>
+      <p>Tags:{{receita.tag}}</p>
+    </ion-item>
+    
+
+    <ion-item>
+      <ion-button type="reset" expand="full" color="danger" (click)="comprar()">Comprar</ion-button>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

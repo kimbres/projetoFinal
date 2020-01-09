@@ -1,18 +1,17 @@
 <ion-header>
 
   <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-        </ion-buttons>
-
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Adicionar Nova Receita</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content >
     <ion-item  lines ="none">
-        <img  src="assets/perfil.png" (click)="escolherFoto()" *ngIf="!receita.foto" text-align>
-        <img [src]="receita.foto" (click)="escolherFoto()" *ngIf="receita.foto">
+        <img  src="assets/perfil.png" (click)="escolherFoto()" *ngIf="!receita.fotos" text-align>
+        <img [src]="receita.fotos" (click)="escolherFoto()" *ngIf="receita.fotos">
     </ion-item>
 
 <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">

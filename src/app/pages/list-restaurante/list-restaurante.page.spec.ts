@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddProdutoPage } from './add-produto.page';
+import { ListRestaurantePage } from './list-restaurante.page';
 
-describe('AddProdutoPage', () => {
-  let component: AddProdutoPage;
-  let fixture: ComponentFixture<AddProdutoPage>;
+describe('ListRestaurantePage', () => {
+  let component: ListRestaurantePage;
+  let fixture: ComponentFixture<ListRestaurantePage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddProdutoPage ],
+      declarations: [ ListRestaurantePage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddProdutoPage);
+    fixture = TestBed.createComponent(ListRestaurantePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -25,3 +25,4 @@ describe('AddProdutoPage', () => {
     expect(component).toBeTruthy();
   });
 });
+
