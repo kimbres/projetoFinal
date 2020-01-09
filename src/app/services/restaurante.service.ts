@@ -70,6 +70,14 @@ export class RestauranteService {
         )
       )
   }
+  busca(dados) {
+    return this.firedb.list<Restaurante>("restaurantes", ref => ref.orderByChild('nome').equalTo("%$"+dados+"%")).snapshotChanges()
+      .pipe(
+        map(dados =>
+          dados.map(d => ({ key: d.payload.key, ...d.payload.val() }))
+        )
+      )
+  }
 
 
   get(id) {

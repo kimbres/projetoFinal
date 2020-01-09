@@ -12,7 +12,7 @@ export class ListRestaurantePage implements OnInit {
 
   protected restaurantes: Restaurante[];
   protected lista: boolean = false
-
+  texto: string= ""
   constructor(
     private restauranteService: RestauranteService,
     private msg: MensagemService
@@ -49,5 +49,14 @@ export class ListRestaurantePage implements OnInit {
       ]
     })
     await alert.present()
+  }
+
+  busca(){
+    this.restauranteService.busca(this.texto).subscribe(
+      res => {
+        this.restaurantes = res;
+        console.log(res);
+      }
+    )
   }
 }

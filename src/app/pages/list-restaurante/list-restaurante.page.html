@@ -9,6 +9,9 @@
 
 <ion-content>
 
+  <!-- Animated Searchbar -->
+<ion-searchbar color="danger"[(ngModel)]="texto" (keyup)="busca()" animated></ion-searchbar>
+
   <ion-item>
     <ion-label>Lista</ion-label>
     <ion-toggle (ngModel)="lista" (click)="lista = !lista"></ion-toggle>
