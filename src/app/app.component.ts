@@ -25,17 +25,22 @@ export class AppComponent {
       icon: 'restaurant'
     },
     {
+      title: 'Receitas',
+      url: '/list-receita',
+      icon: 'restaurant'
+    },
+    {
       title: 'Mapa',
       url: '/mapeamento',
       icon: 'map'
     },
     {
-      title: 'restaurantes',
+      title: 'Restaurantes',
       url: '/list-restaurante',
       icon: 'map'
     },
     {
-      title: 'adicionar restaurantes',
+      title: 'Adicionar Restaurantes',
       url: '/add-restaurante',
       icon: 'map'
     }

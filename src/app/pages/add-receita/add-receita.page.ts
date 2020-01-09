@@ -52,7 +52,7 @@ export class AddReceitaPage implements OnInit {
     this.platform.ready().then(() => {
       this.loadMap();
     });
-    this.receita.foto = null
+    this.receita.fotos = null
   }
 
   onSubmit(form) {
@@ -92,10 +92,10 @@ export class AddReceitaPage implements OnInit {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-      if (this.receita.foto == null) {
-        this.receita.foto = []
+      if (this.receita.fotos == null) {
+        this.receita.fotos = []
       }
-      this.receita.foto.push(base64Image);
+      this.receita.fotos.push(base64Image);
     }, (err) => {
       // Handle error
     });
@@ -114,10 +114,10 @@ export class AddReceitaPage implements OnInit {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-      if (this.receita.foto == null) {
-        this.receita.foto = []
+      if (this.receita.fotos == null) {
+        this.receita.fotos = []
       }
-      this.receita.foto.push(base64Image);
+      this.receita.fotos.push(base64Image);
     }, (err) => {
       // Handle error
     });
@@ -153,7 +153,7 @@ export class AddReceitaPage implements OnInit {
           text: 'Remover Foto',
           icon: 'qr-scanner',
           handler: () => {
-            this.receita.foto = null;
+            this.receita.fotos = null;
           }
         },
         {
@@ -176,9 +176,9 @@ export class AddReceitaPage implements OnInit {
         {
           text: 'Sim',
           handler: () => {
-            this.receita.foto.splice(index, 1)
-            if (this.receita.foto[0] == null)
-              this.receita.foto = null
+            this.receita.fotos.splice(index, 1)
+            if (this.receita.fotos[0] == null)
+              this.receita.fotos = null
           }
         }
         ,
