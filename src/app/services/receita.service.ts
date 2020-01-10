@@ -19,7 +19,7 @@ export class ReceitaService {
   }
 
   get(id) {
-    return this.firedb.object("receitas/" + id).valueChanges();
+    return this.firedb.object<Receita>("receitas/" + id).valueChanges();
   }
 
   getAll() {

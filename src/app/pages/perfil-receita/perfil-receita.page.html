@@ -30,9 +30,10 @@
       <p>Preparo:{{receita.preparo}}</p>
     </ion-item>
     <ion-item>
-      <p>Tags:{{receita.tag}}</p>
+      <p *ngFor="let tags of receita.tags" class="tags">#{{tags.value}}</p>
     </ion-item>
     
+
 
     <ion-item>
       <ion-button type="reset" expand="full" color="danger" (click)="comprar()">Comprar</ion-button>

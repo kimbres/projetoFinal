@@ -30,7 +30,7 @@ export class PerfilReceitaPage implements OnInit {
     this.id = this.ativeRouter.snapshot.paramMap.get("id")
     this.receitaService.get(this.id).subscribe(
       res => {
-        this.receita = res
+        this.receita = res;
       }
     )
   }
