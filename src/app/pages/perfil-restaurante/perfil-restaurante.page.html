@@ -9,12 +9,12 @@
 
 <ion-content>
   <ion-list lines="none">
-    <ion-item lines="none" class="foto">
-      <img src="assets/box.png" *ngIf="!restaurante.fotos">
+    <ion-item style="float: none;" lines="none" class="foto">
+      <img src="assets/estabelecimento.png" *ngIf="!restaurante.fotos">
       <img [src]="restaurante.fotos[0]" *ngIf="restaurante.fotos">
     </ion-item>
     
-    <ion-slides pager="true" [options]="slideOpts" *ngIf="restaurante.fotos">
+    <ion-slides pager="true" style="height:100px;" [options]="slideOpts" *ngIf="restaurante.fotos">
       <ion-slide *ngFor="let foto of restaurante.fotos" class="fotos">
         <img src="{{foto}}">
       </ion-slide>
@@ -43,22 +43,6 @@
     </ion-item>
     <ion-item>
       <p>Facebook:{{restaurante.facebook}}</p>
-    </ion-item>
-    <ion-item>
-      <p>Descrição:{{restaurante.descricao}}</p>
-    </ion-item>
-    <ion-item>
-      <p>Ativo:{{restaurante.ativo}}</p>
-    </ion-item>
-    <ion-item>
-      <ion-text>
-        <p>Latitude: {{restaurante.lat}}</p>
-        <p>Longitude: {{restaurante.lng}}</p>
-      </ion-text>
-    </ion-item>
-
-    <ion-item>
-      <ion-button type="reset" expand="full" color="danger" (click)="comprar()">Comprar</ion-button>
     </ion-item>
   </ion-list>
 

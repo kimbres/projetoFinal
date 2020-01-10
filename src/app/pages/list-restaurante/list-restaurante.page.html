@@ -21,15 +21,13 @@
     <div *ngFor="let p of restaurantes">
       <ion-card class="cards" routerLink="/perfil-restaurante/{{p.key}}">
         <img src="{{p.fotos[0]}}" alt="" *ngIf="p.fotos" />
-        <img src="assets/box.png" alt="" *ngIf="!p.fotos" />
+        <img src="assets/estabelecimento.png" alt="" *ngIf="!p.fotos" />
 
         <ion-card-header>
           <ion-card-subtitle>{{p.nome}}</ion-card-subtitle>
-          <ion-card-title>{{ p.valor | currency:'BRL' }}</ion-card-title>
+          <ion-card-title>{{ p.telefone }}</ion-card-title>
+          <ion-card-title>{{ p.categoria }}</ion-card-title>
         </ion-card-header>
-        <ion-card-content>
-          <p>{{ p.decricao }}</p>
-        </ion-card-content>
       </ion-card>
     </div>
   </ion-list>
@@ -46,7 +44,7 @@
           <img src="assets/box.png" alt="" *ngIf="!p.fotos" />
         </ion-avatar>
         <ion-label>{{ p.nome }}</ion-label>
-        <ion-text>{{ p.key }}</ion-text>
+        <ion-text>{{ p.categoria }}</ion-text>
       </ion-item>
 
       <ion-item-options side="end">

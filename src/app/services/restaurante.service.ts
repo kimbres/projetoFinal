@@ -71,7 +71,7 @@ export class RestauranteService {
       )
   }
   busca(dados) {
-    return this.firedb.list<Restaurante>("restaurantes", ref => ref.orderByChild('nome').equalTo("%$"+dados+"%")).snapshotChanges()
+    return this.firedb.list<Restaurante>("restaurantes", ref => ref.orderByChild('nome').startAt(dados).endAt(dados+'\uf8ff')).snapshotChanges()
       .pipe(
         map(dados =>
           dados.map(d => ({ key: d.payload.key, ...d.payload.val() }))
