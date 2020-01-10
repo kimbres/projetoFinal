@@ -3,10 +3,55 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>list-receita</ion-title>
+    <ion-title>Receitas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <!-- Animated Searchbar -->
+<ion-searchbar color="danger"[(ngModel)]="texto" (keyup)="busca()" animated></ion-searchbar>
+
+  <ion-item>
+    <ion-label>Lista</ion-label>
+    <ion-toggle (ngModel)="lista" (click)="lista = !lista"></ion-toggle>
+  </ion-item>
+
+  <ion-list *ngIf="!lista">
+    <div *ngFor="let p of receitas">
+      <ion-card class="cards" routerLink="/perfil-receita/{{p.key}}">
+        <img src="{{p.fotos[0]}}" alt="" *ngIf="p.fotos" />
+        <img src="assets/box.png" alt="" *ngIf="!p.fotos" />
+
+        <ion-card-header>
+          <ion-card-subtitle>{{p.nome}}</ion-card-subtitle>
+          <ion-card-title>{{ p.valor | currency:'BRL' }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{ p.decricao }}</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-list>
+
+  <ion-list class="lista" *ngIf="lista">
+    <ion-item-sliding *ngFor="let p of receitas">
+      <ion-item-options side="start">
+        <ion-item-option routerLink="/add-receita/{{p.key}}" color="primary">Atualizar</ion-item-option>
+      </ion-item-options>
+
+      <ion-item routerLink="/perfil-receita/{{p.key}}">
+        <ion-avatar>
+          <img src="{{p.fotos[0]}}" alt="" *ngIf="p.fotos" />
+          <img src="assets/box.png" alt="" *ngIf="!p.fotos" />
+        </ion-avatar>
+        <ion-label>{{ p.nome }}</ion-label>
+        <ion-text>{{ p.key }}</ion-text>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option (click)="remover(p.key)" color="danger">Remover</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
