@@ -27,7 +27,9 @@ const routes: Routes = [
   { path: 'list-restaurante', loadChildren: './pages/list-restaurante/list-restaurante.module#ListRestaurantePageModule' },
   { path: 'perfil-usuario', loadChildren: './pages/perfil-usuario/perfil-usuario.module#PerfilUsuarioPageModule' },
   { path: 'perfil-restaurante/:id', loadChildren: './pages/perfil-restaurante/perfil-restaurante.module#PerfilRestaurantePageModule' },
-  { path: 'perfil-receita/:id', loadChildren: './pages/perfil-receita/perfil-receita.module#PerfilReceitaPageModule' }
+  { path: 'perfil-receita/:id', loadChildren: './pages/perfil-receita/perfil-receita.module#PerfilReceitaPageModule' },
+  { path: 'subs', loadChildren: './pages/subs/subs.module#SubsPageModule' },
+  { path: 'add-restaurante', loadChildren: './pages/add-restaurante/add-restaurante.module#AddRestaurantePageModule' }
 
 ]
 

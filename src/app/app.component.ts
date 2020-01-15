@@ -22,7 +22,7 @@ export class AppComponent {
     {
       title: 'Nova Receita',
       url: '/add-receita',
-      icon: 'restaurant'
+      icon: 'add-circle'
     },
     {
       title: 'Receitas',
@@ -37,12 +37,12 @@ export class AppComponent {
     {
       title: 'Restaurantes',
       url: '/list-restaurante',
-      icon: 'map'
+      icon: 'md-restaurant'
     },
     {
       title: 'Adicionar Restaurantes',
       url: '/add-restaurante',
-      icon: 'map'
+      icon: 'add-circle'
     }
   ];
 

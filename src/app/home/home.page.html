@@ -11,14 +11,9 @@
 
 <ion-content>
 
-
         <ion-slides pager="true" [options]="slideOpts">
 
-          <ion-slide>
-              <ion-item >
-                  <img src="/assets/sucos2.png" alt="" />
-                </ion-item>
-          </ion-slide>
+
           <ion-slide>
               <ion-item >
                   <img src="/assets/veg3.png" alt="" />
@@ -26,21 +21,9 @@
           </ion-slide>
         </ion-slides>
 
-
-
-
-
-
-
-
     <ion-list lines="none">
 
-      <ion-list-header>
-        <ion-label>Resources</ion-label>
-      </ion-list-header>
-
-
-      <ion-card  routerLink="/restaurantes" id="teste">
+      <ion-card  routerLink= '/list-restaurante' id="teste">
           <img src="/assets/restaurante2.jpg" />
       <ion-item>
         <ion-icon name="business"></ion-icon>
@@ -49,22 +32,16 @@
     </ion-card>
     <ion-card id="teste">
         <img src="/assets/receitas2.jpg" />
-      <ion-item href="https://ionicframework.com/docs/building/scaffolding">
+      <ion-item href='/list-receita'>
         <ion-icon   name="book"></ion-icon>
         <ion-label style="padding-left: 10px;">Receitas</ion-label>
       </ion-item>
     </ion-card>
 <ion-card id="teste" >
     <img src="/assets/organicos2.jpg" />
-      <ion-item href="https://ionicframework.com/docs/layout/structure">
+      <ion-item href='/subs'>
         <ion-icon name="nutrition"></ion-icon>
-        <ion-label style="padding-left: 10px;" >Orgânicos</ion-label>
-      </ion-item>
-    </ion-card>
-    <ion-card id="teste">
-      <ion-item  href="https://ionicframework.com/docs/layout/structure">
-        <ion-icon  name="color-fill"></ion-icon>
-        <ion-label>Theme Your App</ion-label>
+        <ion-label style="padding-left: 10px;" >Substituições de Alimentos</ion-label>
       </ion-item>
     </ion-card>
 

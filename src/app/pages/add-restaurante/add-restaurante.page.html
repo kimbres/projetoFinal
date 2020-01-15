@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-item lines="none" class="foto">
-    <img src="assets/estabelecimento.png" (click)="escolherFoto()" *ngIf="!restaurante.fotos">
+    <img src="assets/esta.png" (click)="escolherFoto()" *ngIf="!restaurante.foto">
     <img [src]="restaurante.fotos[0]" (click)="escolherFoto()" *ngIf="restaurante.fotos">
   </ion-item>
   

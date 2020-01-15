@@ -24,9 +24,9 @@
         <img src="assets/estabelecimento.png" alt="" *ngIf="!p.fotos" />
 
         <ion-card-header>
-          <ion-card-subtitle>{{p.nome}}</ion-card-subtitle>
-          <ion-card-title>{{ p.telefone }}</ion-card-title>
-          <ion-card-title>{{ p.categoria }}</ion-card-title>
+          <ion-card-title>{{p.nome}}</ion-card-title>
+          <ion-card-subtitle>{{ p.telefone }}</ion-card-subtitle>
+          <ion-card-subtitle>{{ p.categoria }}</ion-card-subtitle>
         </ion-card-header>
       </ion-card>
     </div>
@@ -44,7 +44,7 @@
           <img src="assets/box.png" alt="" *ngIf="!p.fotos" />
         </ion-avatar>
         <ion-label>{{ p.nome }}</ion-label>
-        <ion-text>{{ p.categoria }}</ion-text>
+
       </ion-item>
 
       <ion-item-options side="end">
