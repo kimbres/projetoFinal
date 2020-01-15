@@ -31,7 +31,7 @@
       <p>Preparo:{{receita.preparo}}</p>
     </ion-item>
     <ion-item>
-      <p>Tags:{{receita.tag}}</p>
+      <p *ngFor="let tags of receita.tags">#{{tags.value}}</p>
     </ion-item>
     
   </ion-list>
